@@ -6,6 +6,10 @@
 package client;
 
 import common.Message;
+import javafx.application.Platform;
+import server.ConnectedClient;
+
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
@@ -18,34 +22,41 @@ import java.util.logging.Logger;
  */
 public class ClientReceive implements Runnable {
 
-    private Socket socket;
-    private Client client;
-    private ObjectInputStream in;
+	private Socket socket;
+	private Client client;
+	private ObjectInputStream in;
+	private Message mess;
 
-    public ClientReceive(Socket socket, Client client) {
-        this.socket = socket;
-        this.client = client;
-    }
+	public ClientReceive(Socket socket, Client client) {
+		this.socket = socket;
+		this.client = client;
+	}
 
-    @Override
-    public void run() {
-        try {
-            in = new ObjectInputStream(socket.getInputStream());
-            boolean isActive = true;
-            Message mess;
-            while (isActive) {
-                mess = (Message) in.readObject();
-                if (mess != null) {
-                    this.client.messageReceived(mess);
-                } else {
-                    isActive = false;
-                }
-            }
-            client.disconnectedServer();
-        } catch (IOException ex) {
-            Logger.getLogger(ClientReceive.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ClientReceive.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+	@Override
+	public void run() {
+		try {
+			in = new ObjectInputStream(socket.getInputStream());
+			boolean isActive = true;
+			while (isActive) {
+				mess = (Message) in.readObject();
+				if (mess != null) {
+					Platform.runLater(new Runnable() {
+						@Override
+						public void run() {
+							client.getClientPanel().updateReceivedText(mess);
+						}
+					});
+				} else {
+					isActive = false;
+				}
+			}
+			client.disconnectedServer();
+		} catch (EOFException ex) {
+			Logger.getLogger(ClientReceive.class.getName()).log(Level.INFO, "Client deconnected");
+		} catch (IOException ex) {
+			Logger.getLogger(ClientReceive.class.getName()).log(Level.SEVERE, null, ex);
+		} catch (ClassNotFoundException ex) {
+			Logger.getLogger(ClientReceive.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
 }

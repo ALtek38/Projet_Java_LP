@@ -36,7 +36,6 @@ public class Connection implements Runnable {
             try {
                 Socket sockNewClient = serverSocket.accept();
                 ConnectedClient newClient = new ConnectedClient(server, sockNewClient);
-                newClient.setId(server.getNumClients());
                 server.addClient(newClient);
                 Thread threadNewClient = new Thread(newClient);
                 threadNewClient.start();

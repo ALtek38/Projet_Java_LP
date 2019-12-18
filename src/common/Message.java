@@ -22,12 +22,19 @@ public class Message implements Serializable{
 
     @Override
     public String toString() {
-        return "Message{" + "sender=" + sender + ", content=" + content + '}';
+        return "Message : " + "sender=" + sender + ", content=" + content;
     }
 
     public void setSender(String sender) {
         this.sender = sender;
     }
-    
+
+	public String getContent() {
+		return content;
+	}
+
+	public String getSender() {
+		return sender;
+	}
     
 }

@@ -13,30 +13,23 @@ import common.Message;
 
 public class ClientPanel extends Parent {
 	private TextArea textToSend;
-	private ScrollPane scrollReceivedText;
-	private TextFlow receivedText;
+	private TextArea receivedText;
 	private Button sendBtn;
 	private Button clearBtn;
 	private Client client;
 
 	public ClientPanel() {
 		this.textToSend = new TextArea();
-		this.scrollReceivedText = new ScrollPane();
-		this.receivedText = new TextFlow();
+		this.receivedText = new TextArea();
 		this.sendBtn = new Button();
 		this.clearBtn = new Button();
 		client = new Client("127.0.0.1", 2001, this);
 
-        receivedText.setLayoutX(0);
-        receivedText.setLayoutY(0);
-        receivedText.setVisible(true);
-		
-		scrollReceivedText.setLayoutX(50);
-		scrollReceivedText.setLayoutY(25);
-		scrollReceivedText.setPrefWidth(400);
-		scrollReceivedText.setPrefHeight(350);
-		scrollReceivedText.setContent(receivedText);
-		scrollReceivedText.vvalueProperty().bind(receivedText.heightProperty());
+		receivedText.setLayoutX(50);
+		receivedText.setLayoutY(25);
+		receivedText.setPrefWidth(400);
+		receivedText.setPrefHeight(350);
+		receivedText.setEditable(false);
 
 		textToSend.setLayoutX(50);
 		textToSend.setLayoutY(400);
@@ -55,8 +48,6 @@ public class ClientPanel extends Parent {
 			public void handle(ActionEvent event) {
 				client.sendMessage(textToSend.getText());
 				textToSend.clear();
-//				Label objetLabel = new Label(textToSend.getText());
-//				receivedText.getChildren().add(objetLabel);
 			}
 		});
 
@@ -74,15 +65,16 @@ public class ClientPanel extends Parent {
 			}
 		});
 
-		this.getChildren().add(scrollReceivedText);
 		this.getChildren().add(textToSend);
+		this.getChildren().add(receivedText);
 		this.getChildren().add(clearBtn);
 		this.getChildren().add(sendBtn);
-
 	}
 	
-	public void showMessage(Message mess) {
-        receivedText.getChildren().add(new Label(mess.toString()));
+	public void updateReceivedText(Message mess) {
+		StringBuilder fieldContent = new StringBuilder(receivedText.getText());
+		fieldContent.append(mess.toString()+"\n");
+        receivedText.setText(fieldContent.toString());
     }
 
 }

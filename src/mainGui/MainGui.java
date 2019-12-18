@@ -28,25 +28,11 @@ public class MainGui extends Application {
 		ClientPanel clientPanel = new ClientPanel();
 		Group root = new Group();
 		root.getChildren().add(clientPanel);
-		Scene scene = new Scene(root, 600, 500);
-		stage.setTitle("Mon application");
+		Scene scene = new Scene(root, 500, 500);
+		scene.setFill(Color.BEIGE);
+		stage.setTitle("Chat application");
 		stage.setScene(scene);
 		stage.show();
 		}
 	
-	/*
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        primaryStage.setWidth(300);
-        primaryStage.setHeight(300);
-        primaryStage.setTitle("App chat");
-        Group root = new Group();
-        Scene scene = new Scene(root);
-        scene.setFill(Color.BEIGE);
-        Text text = new Text(10, 30, "Hello world");
-        root.getChildren().add(text);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }*/
-
 }

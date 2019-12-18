@@ -20,7 +20,6 @@ import java.util.logging.Logger;
 public class ClientSend implements Runnable {
 
     private Socket socket;
-
     private ObjectOutputStream out;
 
     public ClientSend(Socket socket, ObjectOutputStream out) {
@@ -35,9 +34,6 @@ public class ClientSend implements Runnable {
             try {
                 System.out.print("Votre message >> ");
                 String m = sc.nextLine();
-                if(m.equals("bye")){
-                    break;
-                }
                 Message mess = new Message("client", m);
                 out.writeObject(mess);
                 out.flush();

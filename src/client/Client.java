@@ -27,21 +27,6 @@ public class Client {
     private ObjectOutputStream out;
     private ClientPanel clientPanel;
 
-//    public Client(String address, int port) {
-//        try {
-//            this.address = address;
-//            this.port = port;
-//            this.socket = new Socket(address, port);
-//            this.out = new ObjectOutputStream(socket.getOutputStream());
-//            Thread threadClientSend = new Thread(new ClientSend(socket, out));
-//            threadClientSend.start();
-//            Thread threadClientReceive = new Thread(new ClientReceive(socket, this));
-//            threadClientReceive.start();
-//        } catch (IOException ex) {
-//            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
-    
     public Client(String address, int port,ClientPanel clientPanel) {
         try {
             this.address = address;
@@ -49,21 +34,19 @@ public class Client {
             this.socket = new Socket(address, port);
             this.out = new ObjectOutputStream(socket.getOutputStream());
             this.clientPanel=clientPanel;
-            Thread threadClientSend = new Thread(new ClientSend(socket, out));
-            threadClientSend.start();
             Thread threadClientReceive = new Thread(new ClientReceive(socket, this));
             threadClientReceive.start();
         } catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     public void disconnectedServer() {
         try {
-            this.in.close();
-            this.out.close();
-            if (this.socket != null) {
-                this.socket.close();
+        	this.out.close();
+        	this.socket.close();
+            if (this.in != null) {
+            	this.in.close();
             }
             System.exit(0);
         } catch (IOException ex) {
@@ -76,13 +59,13 @@ public class Client {
             Message mess= new Message("client", text);
             this.out.writeObject(mess);
             this.out.flush();
-            this.clientPanel.showMessage(mess);
             } catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    public void messageReceived(Message mess) {
-        System.out.println(mess);
-    }
+    public ClientPanel getClientPanel() {
+		return clientPanel;
+	}
+
 }
