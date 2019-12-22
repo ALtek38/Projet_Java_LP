@@ -15,8 +15,8 @@ import java.util.List;
  */
 public class Server {
 
-	int port;
-	List<ConnectedClient> clients;
+	private int port;
+	private List<ConnectedClient> clients;
 
 	public Server(int port) {
 		this.port = port;
@@ -29,9 +29,9 @@ public class Server {
 		return port;
 	}
 
-	public void broadcastMessage(Message mess, int id) {
+	public void broadcastMessage(Message mess) {
 		for (ConnectedClient client : clients) {
-				client.sendMessage(mess);
+			client.sendMessage(mess);
 		}
 	}
 
@@ -40,15 +40,26 @@ public class Server {
 		clients.remove(connectedClient);
 		for (ConnectedClient client : clients) {
 			client.sendMessage(new Message("Serveur", "Le client " + connectedClient.getId() + " nous a quitté"));
+			client.sendListConnectedClients(getIdsConnectedClients());
 		}
+		connectedClient = null;
 	}
 
 	public void addClient(ConnectedClient newClient) {
+		this.clients.add(newClient);
 		Message mess = new Message("Serveur", "Le client " + newClient.getId() + " vient de se connecter");
 		for (ConnectedClient client : clients) {
-			client.sendMessage(mess);
+			if (client.getId() != newClient.getId())
+				client.sendMessage(mess);
+			client.sendListConnectedClients(getIdsConnectedClients());
 		}
-		this.clients.add(newClient);
 	}
 
+	private ArrayList<Integer> getIdsConnectedClients() {
+		ArrayList<Integer> idsconnectedClients = new ArrayList<Integer>();
+		for (ConnectedClient client : clients) {
+			idsconnectedClients.add(client.getId());
+		}
+		return idsconnectedClients;
+	}
 }

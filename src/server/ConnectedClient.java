@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -53,7 +54,7 @@ public class ConnectedClient implements Runnable {
 						isActive = false;
 					} else {
 						mess.setSender(mess.getSender() + " " + String.valueOf(id));
-						server.broadcastMessage(mess, id);
+						server.broadcastMessage(mess);
 					}
 				} else {
 					server.disconnectedClient(this);
@@ -94,5 +95,15 @@ public class ConnectedClient implements Runnable {
 		} catch (IOException ex) {
 			Logger.getLogger(ConnectedClient.class.getName()).log(Level.SEVERE, null, ex);
 		}
+	}
+
+	public void sendListConnectedClients(ArrayList<Integer> idsconnectedClients) {
+		try {
+			this.out.writeObject(idsconnectedClients);
+			this.out.flush();
+		} catch (IOException ex) {
+			Logger.getLogger(ConnectedClient.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		
 	}
 }
