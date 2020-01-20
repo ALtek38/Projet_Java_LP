@@ -24,14 +24,16 @@ public class MainGui extends Application {
 	
 	@Override
 	public void start(Stage stage) throws Exception {
-		ClientPanel clientPanel = new ClientPanel();
+		ClientPanel clientPanel = new ClientPanel(stage);
 		Group root = new Group();
 		root.getChildren().add(clientPanel);
 		Scene scene = new Scene(root, 500, 500);
 		scene.setFill(Color.BEIGE);
 		stage.setTitle("Chat application");
 		stage.setScene(scene);
-		stage.show();
+		stage.show();                
+                
+                
 		}
 	
 }
