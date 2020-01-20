@@ -22,18 +22,27 @@ public class MainGui extends Application {
 		Application.launch(MainGui.class, args);
 	}
 	
+//	@Override
+//	public void start(Stage stage) throws Exception {
+//		ClientPanel clientPanel = new ClientPanel();
+//		Group root = new Group();
+//		root.getChildren().add(clientPanel);
+//		Scene scene = new Scene(root, 500, 500);
+//		scene.setFill(Color.BEIGE);
+//		stage.setTitle("Chat application");
+//		stage.setScene(scene);
+//		stage.show();
+//		}
 	@Override
 	public void start(Stage stage) throws Exception {
-		ClientPanel clientPanel = new ClientPanel(stage);
-		Group root = new Group();
-		root.getChildren().add(clientPanel);
-		Scene scene = new Scene(root, 500, 500);
+            AuthentificationPanel authentificationPanel = new AuthentificationPanel();
+            Group root = new Group();
+		root.getChildren().add(authentificationPanel);
+		Scene scene = new Scene(root, 346, 349);
 		scene.setFill(Color.BEIGE);
 		stage.setTitle("Chat application");
 		stage.setScene(scene);
-		stage.show();                
-                
-                
-		}
-	
+		stage.show();
+        }
+        
 }
