@@ -25,8 +25,12 @@ public class ClientPanel extends Parent {
         private Popup emotePP;
         private Label emoteLabel;
         private Button emote1;
+        private Button emote2;
+        private Button emote3;
+        private Button emote4;
+        private Button emote5;
         private final Stage stage;
-        private  Button emote2;
+        
 
 	public ClientPanel(Stage stage) {
             this.stage = stage;
@@ -39,8 +43,11 @@ public class ClientPanel extends Parent {
                 this.emoteBtn = new Button();
                 this.emotePP = new Popup();
                 this.emoteLabel = new Label("");
-                this.emote1 = new Button(":3");
-                this.emote2 = new Button(":D");
+                this.emote1 = new Button("ಠ▃ಠ");
+                this.emote2 = new Button("（ꉺᗜꉺ）");
+                this.emote3 = new Button("۹(ÒہÓ)۶");
+                this.emote4 = new Button("(ಥ﹏ಥ)");
+                this.emote5 = new Button("(∩｀-´)⊃━☆ﾟ.*･｡ﾟ");
 		client = new Client("127.0.0.1", 2001, this);
 
 		receivedText.setLayoutX(40);
@@ -103,22 +110,58 @@ public class ClientPanel extends Parent {
 			}
 		});
                 
-                emoteLabel.setMinWidth(100); 
+                emoteLabel.setMinWidth(110); 
                 emoteLabel.setMinHeight(100); 
                 emoteLabel.setStyle(" -fx-background-color: white;"); 
 
                 emote1.setLayoutX(5);
+                emote1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent t) {
+                    textToSend.setText(textToSend.getText()+" ಠ▃ಠ");
+                }});
                 emote1.setLayoutY(5);
                 
-                emote2.setLayoutX(30);
+                emote2.setLayoutX(50);
+                emote2.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent t) {
+                    textToSend.setText(textToSend.getText()+" （ꉺᗜꉺ）");
+                }});
                 emote2.setLayoutY(5);
+                
+                emote3.setLayoutX(5);
+                emote3.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent t) {
+                    textToSend.setText(textToSend.getText()+" ۹(ÒہÓ)۶");
+                }});
+                emote3.setLayoutY(30);
+                
+                emote4.setLayoutX(50);
+                emote4.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent t) {
+                    textToSend.setText(textToSend.getText()+" (ಥ﹏ಥ)");
+                }});
+                emote4.setLayoutY(30);
+                
+                emote5.setLayoutX(5);
+                emote5.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent t) {
+                    textToSend.setText(textToSend.getText()+" (∩｀-´)⊃━☆ﾟ.*･｡ﾟ");
+                }});
+                emote5.setLayoutY(55);
                 
                 emotePP.hide();
                 emotePP.getContent().add(emoteLabel);
                 emotePP.getContent().add(emote1);
                 emotePP.getContent().add(emote2);
-
-
+                emotePP.getContent().add(emote3);
+                emotePP.getContent().add(emote4);
+                emotePP.getContent().add(emote5);
+                
                 emoteBtn.setLayoutX(350);
                 emoteBtn.setLayoutY(400);
                 emoteBtn.setText(":-)");
