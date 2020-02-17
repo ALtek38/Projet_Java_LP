@@ -26,14 +26,18 @@ public class Client {
     private ObjectInputStream in;
     private ObjectOutputStream out;
     private ClientPanel clientPanel;
+    private Integer idBase;
+    private String pseudo;
 
-    public Client(String address, int port,ClientPanel clientPanel) {
+    public Client(String address, int port,ClientPanel clientPanel, Integer idBase, String pseudo) {
         try {
             this.address = address;
             this.port = port;
             this.socket = new Socket(address, port);
             this.out = new ObjectOutputStream(socket.getOutputStream());
             this.clientPanel=clientPanel;
+            this.idBase= idBase;
+            this.pseudo=pseudo;
             Thread threadClientReceive = new Thread(new ClientReceive(socket, this));
             threadClientReceive.start();
         } catch (IOException ex) {
@@ -68,4 +72,9 @@ public class Client {
 		return clientPanel;
 	}
 
+    
+    
+
+    
+    
 }

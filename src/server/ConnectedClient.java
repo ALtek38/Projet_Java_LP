@@ -5,6 +5,7 @@
  */
 package server;
 
+import common.ConnexionBD;
 import common.Message;
 
 import java.io.EOFException;
@@ -12,6 +13,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -55,6 +57,11 @@ public class ConnectedClient implements Runnable {
 					} else {
 						mess.setSender(mess.getSender() + " " + String.valueOf(id));
 						server.broadcastMessage(mess);
+                                                try (java.sql.Connection conn = ConnexionBD.getInstance()) {
+                                                    
+                                                } catch (SQLException e) {
+            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+        }
 					}
 				} else {
 					server.disconnectedClient(this);

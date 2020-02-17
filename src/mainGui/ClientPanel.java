@@ -7,10 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.input.MouseEvent;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 public class ClientPanel extends Parent {
@@ -21,28 +18,15 @@ public class ClientPanel extends Parent {
 	private Button clearBtn;
 	private Button disconnectionBtn;
 	private Client client;
-        private Button emoteBtn;
-        private Popup emotePP;
-        private Label emoteLabel;
-        private Button emote1;
-        private final Stage stage;
-        private  Button emote2;
 
-	public ClientPanel(Stage stage) {
-            this.stage = stage;
+	public ClientPanel() {
 		this.textToSend = new TextArea();
 		this.receivedText = new TextArea();
 		this.connectedUsers = new TextArea();
 		this.sendBtn = new Button();
 		this.clearBtn = new Button();
 		this.disconnectionBtn = new Button();
-                this.emoteBtn = new Button();
-                this.emotePP = new Popup();
-                this.emoteLabel = new Label("");
-                this.emote1 = new Button(":3");
-                this.emote2 = new Button(":D");
-		client = new Client("127.0.0.1", 2001, this);
-
+		
 		receivedText.setLayoutX(40);
 		receivedText.setLayoutY(25);
 		receivedText.setPrefWidth(400);
@@ -60,7 +44,7 @@ public class ClientPanel extends Parent {
 		connectedUsers.setPrefHeight(55);
 		connectedUsers.setEditable(false);
 
-		sendBtn.setLayoutX(390);
+		sendBtn.setLayoutX(370);
 		sendBtn.setLayoutY(400);
 		sendBtn.setPrefHeight(30);
 		sendBtn.setPrefWidth(70);
@@ -102,50 +86,14 @@ public class ClientPanel extends Parent {
 				client.sendMessage("bye");
 			}
 		});
-                
-                emoteLabel.setMinWidth(100); 
-                emoteLabel.setMinHeight(100); 
-                emoteLabel.setStyle(" -fx-background-color: white;"); 
-
-                emote1.setLayoutX(5);
-                emote1.setLayoutY(5);
-                
-                emote2.setLayoutX(30);
-                emote2.setLayoutY(5);
-                
-                emotePP.hide();
-                emotePP.getContent().add(emoteLabel);
-                emotePP.getContent().add(emote1);
-                emotePP.getContent().add(emote2);
-
-
-                emoteBtn.setLayoutX(350);
-                emoteBtn.setLayoutY(400);
-                emoteBtn.setText(":-)");
-                emoteBtn.setVisible(true);
-                
-                emoteBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent t) {
-                        if (!emotePP.isShowing()) {
-                            emotePP.setAnchorX(t.getScreenX());
-                            emotePP.setAnchorY(t.getScreenY());
-                            emotePP.show(stage); 
-                        }
-                        else
-                            emotePP.hide(); 
-                        }
-                  });
-                
+		
 		this.getChildren().add(textToSend);
 		this.getChildren().add(receivedText);
 		this.getChildren().add(connectedUsers);
 		this.getChildren().add(clearBtn);
 		this.getChildren().add(sendBtn);
 		this.getChildren().add(disconnectionBtn);
-                this.getChildren().add(emoteBtn);
 	}
-
 
 	public void updateReceivedText(String message) {
 		StringBuilder fieldContent = new StringBuilder(receivedText.getText());
@@ -162,4 +110,9 @@ public class ClientPanel extends Parent {
 		connectedUsers.setText(fieldContent.toString());
 	}
 
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+        
 }
