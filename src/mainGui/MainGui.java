@@ -17,23 +17,22 @@ import javafx.stage.Stage;
  */
 public class MainGui extends Application {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Application.launch(MainGui.class, args);
-	}
-	
-	@Override
-	public void start(Stage stage) throws Exception {
-		ClientPanel clientPanel = new ClientPanel(stage);
-		Group root = new Group();
-		root.getChildren().add(clientPanel);
-		Scene scene = new Scene(root, 500, 500);
-		scene.setFill(Color.BEIGE);
-		stage.setTitle("Chat application");
-		stage.setScene(scene);
-		stage.show();                
-                
-                
-		}
-	
+<<<<<<< HEAD
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        Application.launch(MainGui.class, args);
+    }
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        AuthentificationPanel authentificationPanel = new AuthentificationPanel();
+        Group root = new Group();
+        root.getChildren().add(authentificationPanel);
+        Scene scene = new Scene(root, 346, 349);
+        scene.setFill(Color.BEIGE);
+        stage.setTitle("Chat application");
+        stage.setScene(scene);
+        stage.show();
+    }
+>>>>>>> master
 }
