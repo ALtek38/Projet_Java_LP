@@ -25,15 +25,12 @@ public class ClientPanel extends Parent {
         private Popup emotePP;
         private Label emoteLabel;
         private Button emote1;
-<<<<<<< HEAD
         private Button emote2;
         private Button emote3;
         private Button emote4;
         private Button emote5;
         private final Stage stage;
         
-=======
->>>>>>> origin
 
 	public ClientPanel(Stage stage) {
             this.stage = stage;
@@ -46,14 +43,11 @@ public class ClientPanel extends Parent {
                 this.emoteBtn = new Button();
                 this.emotePP = new Popup();
                 this.emoteLabel = new Label("");
-<<<<<<< HEAD
                 this.emote1 = new Button("ಠ▃ಠ");
                 this.emote2 = new Button("（ꉺᗜꉺ）");
                 this.emote3 = new Button("۹(ÒہÓ)۶");
                 this.emote4 = new Button("(ಥ﹏ಥ)");
                 this.emote5 = new Button("(∩｀-´)⊃━☆ﾟ.*･｡ﾟ");
-=======
->>>>>>> origin
 		client = new Client("127.0.0.1", 2001, this);
 
 		receivedText.setLayoutX(40);
@@ -116,15 +110,11 @@ public class ClientPanel extends Parent {
 			}
 		});
                 
-<<<<<<< HEAD
                 emoteLabel.setMinWidth(110); 
-=======
->>>>>>> origin
                 emoteLabel.setMinHeight(100); 
                 emoteLabel.setStyle(" -fx-background-color: white;"); 
 
                 emote1.setLayoutX(5);
-<<<<<<< HEAD
                 emote1.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent t) {
@@ -164,19 +154,14 @@ public class ClientPanel extends Parent {
                 }});
                 emote5.setLayoutY(55);
                 
-=======                
->>>>>>> origin
                 emotePP.hide();
                 emotePP.getContent().add(emoteLabel);
                 emotePP.getContent().add(emote1);
                 emotePP.getContent().add(emote2);
-<<<<<<< HEAD
                 emotePP.getContent().add(emote3);
                 emotePP.getContent().add(emote4);
                 emotePP.getContent().add(emote5);
                 
-=======
->>>>>>> origin
                 emoteBtn.setLayoutX(350);
                 emoteBtn.setLayoutY(400);
                 emoteBtn.setText(":-)");
