@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -86,3 +87,5 @@ public class EmotePopup extends Application {
     } 
 } 
     
+=======
+>>>>>>> 548b3b5aa0bcb5ebc6b2cf8938678395cc1f6589
