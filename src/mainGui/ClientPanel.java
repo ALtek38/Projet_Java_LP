@@ -48,7 +48,6 @@ public class ClientPanel extends Parent {
                 this.emote3 = new Button("۹(ÒہÓ)۶");
                 this.emote4 = new Button("(ಥ﹏ಥ)");
                 this.emote5 = new Button("(∩｀-´)⊃━☆ﾟ.*･｡ﾟ");
-		client = new Client("127.0.0.1", 2001, this);
 
 		receivedText.setLayoutX(40);
 		receivedText.setLayoutY(25);
@@ -204,5 +203,9 @@ public class ClientPanel extends Parent {
 		}
 		connectedUsers.setText(fieldContent.toString());
 	}
+        
+        public void setClient(Client client) {
+            this.client = client;
+        }
 
 }

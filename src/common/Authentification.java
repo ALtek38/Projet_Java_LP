@@ -13,7 +13,7 @@ import java.sql.SQLException;
  */
 public class Authentification {
 
-    public Boolean isValid(String pseudo, String passwd) {
+    public Integer getIdBaseIfisValid(String pseudo, String passwd) {
         String sql = "SELECT * FROM PJ_CLIENT WHERE PSEUDO=? AND PASSWD=?";
         try (Connection conn = ConnexionBD.getInstance()) {
 
@@ -24,16 +24,16 @@ public class Authentification {
             statement.setString(2, hashedPassword); // set input parameter 2
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
-                return true;
+                return rs.getInt("ID_CLIENT");
             } else {
-                return false;
+                return -1;
             }
         } catch (SQLException e) {
             System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return false;
+        return -1;
     }
 
     public String generateHash(String passwordToHash) {

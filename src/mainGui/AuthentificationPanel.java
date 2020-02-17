@@ -1,5 +1,6 @@
 package mainGui;
 
+import client.Client;
 import common.Authentification;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -64,10 +65,14 @@ public class AuthentificationPanel extends Parent {
             @Override
             public void handle(ActionEvent event) {
 
-                Authentification authentification = new Authentification();
-                if (authentification.isValid(pseudo.getText(), passwd.getText())) {
+                 Authentification authentification = new Authentification();
+                Integer idBase=authentification.getIdBaseIfisValid(pseudo.getText(), passwd.getText()); 
+                
+                if (idBase!=-1) {
                     Stage stage = (Stage) seconnecter.getScene().getWindow();
-                    ClientPanel clientPanel = new ClientPanel();
+                    ClientPanel clientPanel = new ClientPanel(stage);
+                    Client client = new Client("127.0.0.1", 2001, clientPanel, idBase, pseudo.getText());
+                    clientPanel.setClient(client);
                     Group root = new Group();
                     root.getChildren().add(clientPanel);
                     Scene scene = new Scene(root, 500, 500);

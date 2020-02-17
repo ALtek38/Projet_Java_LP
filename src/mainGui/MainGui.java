@@ -17,7 +17,6 @@ import javafx.stage.Stage;
  */
 public class MainGui extends Application {
 
-<<<<<<< HEAD
     public static void main(String[] args) {
         // TODO Auto-generated method stub
         Application.launch(MainGui.class, args);
@@ -34,5 +33,4 @@ public class MainGui extends Application {
         stage.setScene(scene);
         stage.show();
     }
->>>>>>> master
 }
