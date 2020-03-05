@@ -45,7 +45,7 @@ public class AuthentificationPanel extends Parent {
 		pseudo.setLayoutY(90);
 		pseudo.setPrefWidth(160);
 		pseudo.setPrefHeight(35);
-		pseudo.setText("login1");
+		pseudo.setText("pseudo1");
 
 		passwd.setLayoutX(70);
 		passwd.setLayoutY(155);
@@ -84,7 +84,7 @@ public class AuthentificationPanel extends Parent {
 
 	public void showClientPanel() {
 		Stage stage = (Stage) seconnecter.getScene().getWindow();
-		ClientPanel clientPanel = new ClientPanel();
+		ClientPanel clientPanel = new ClientPanel(stage);
 		clientPanel.setClient(client);
 		client.setClientPanel(clientPanel);
 		Group root = new Group();

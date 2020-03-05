@@ -77,8 +77,9 @@ public class ConnectedClient implements Runnable {
 						server.disconnectedClient(this);
 						isActive = false;
 					} else {
-						server.broadcastMessage(mess);
 						saveMessageDB(mess);
+						mess.setContent(this.pseudo + "> " + mess.getContent());
+						server.broadcastMessage(mess);
 					}
 				}
 			}

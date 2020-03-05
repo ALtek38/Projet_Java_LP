@@ -67,7 +67,7 @@ public class ClientReceive implements Runnable {
 						Platform.runLater(new Runnable() {
 							@Override
 							public void run() {
-								client.getClientPanel().updateReceivedText(mess.toString());
+								client.getClientPanel().updateReceivedText(mess.getContent());
 							}
 						});
 					} else if (object instanceof Notification) {

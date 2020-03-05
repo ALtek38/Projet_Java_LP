@@ -31,8 +31,14 @@ public class Message implements Serializable{
     public String getContent() {
         return content;
     }
+    
+    
 
-    public Integer getIdClientSender() {
+    public void setContent(String content) {
+		this.content = content;
+	}
+
+	public Integer getIdClientSender() {
         return idClientSender;
     }
 
