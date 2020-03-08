@@ -7,10 +7,8 @@ package server;
 
 import common.AuthenticationResult;
 import common.AuthenticationValues;
-import common.ConnexionBD;
 import common.Message;
 import common.Notification;
-import common.VerificationAuthentication;
 
 import java.io.EOFException;
 import java.io.IOException;

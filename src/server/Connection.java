@@ -3,7 +3,6 @@ package server;
 import common.AuthenticationResult;
 import common.AuthenticationValues;
 import common.Message;
-import common.VerificationAuthentication;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
